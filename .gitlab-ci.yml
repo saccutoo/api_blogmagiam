@@ -1,0 +1,21 @@
+variables:
+  DOCKER_TLS_CERTDIR: ""
+  IMAGE_NAME: templateapi
+  CI_REGISTRY_IMAGE: https://gitlab.com/-/ide/project/kimlam2207/templateapi/tree/main/-/src/Services/Templates.API
+  IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_PIPELINE_ID
+
+stages:
+  - docker
+
+docker:
+  stage: docker
+  image: docker:stable
+  services:
+    - docker:dind
+  only:
+    - main
+  script:
+    - cd src/Services/Templates.API
+    - docker build -t templateapi:latest .
+  tags:
+    - docker

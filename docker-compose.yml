@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  templates.api:
+    image: ${DOCKER_REGISTRY-}templatesapi
+    build:
+      context: .
+      dockerfile: src/Services/Templates.API/Dockerfile

@@ -17,11 +17,13 @@ namespace Templates.API.Controllers
 
         private readonly IRedisService _redisService;
         private readonly ISynchronizedHandler _SynchronizedInterfaceHandler;
+        private readonly ICouponsHandler _couponsHandler;
 
-        public SynchronizedController(IRedisService redisService, ISynchronizedHandler SynchronizedInterfaceHandler)
+        public SynchronizedController(IRedisService redisService, ISynchronizedHandler SynchronizedInterfaceHandler, ICouponsHandler couponsHandler)
         {
             _redisService = redisService;
             _SynchronizedInterfaceHandler = SynchronizedInterfaceHandler;
+            _couponsHandler = couponsHandler;
         }
 
 
@@ -38,5 +40,18 @@ namespace Templates.API.Controllers
             return result;
         }
 
+
+        /// <summary>
+        /// Đồng bộ coupon 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("coupon")]
+        [ProducesResponseType(typeof(ResponseObject<SynchronizedModel>), StatusCodes.Status200OK)]
+        public async Task<ResponseObject<SynchronizedModel>> SynchronizedCoupon()
+        {
+            var result = await _couponsHandler.SynchronizedCouponDataAsync();
+            return new ResponseObject<SynchronizedModel>();
+        }
     }
 }

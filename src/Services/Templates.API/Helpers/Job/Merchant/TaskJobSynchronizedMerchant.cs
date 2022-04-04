@@ -24,7 +24,7 @@ namespace Templates.API
             try
             {
                 _SynchronizedInterfaceHandler.SynchronizedMerchant();
-                _logger.LogInformation("job success");
+                _logger.LogInformation("TaskJobSynchronizedMerchant job success" + DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"));
             }
             catch (Exception ex)
             {

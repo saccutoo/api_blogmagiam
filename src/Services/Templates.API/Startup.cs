@@ -63,11 +63,25 @@ namespace Templates.API
             services.AddSingleton<IJobFactory, SingletonJobFactory>();
             services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
 
-            // Add our job
+            // Add our job merchant
             services.AddSingleton<TaskJobSynchronizedMerchant>();
             services.AddSingleton(new JobSchedule(
                 jobType: typeof(TaskJobSynchronizedMerchant),
-                cronExpression: "0 0 */6 ? * *")); // run every 5 seconds
+                cronExpression: "0 0 */6 ? * *"));//6 tiếng chạy 1 lần
+
+            // Add our job coupon
+            services.AddSingleton<TaskJobSynchronizedCoupon>();
+            services.AddSingleton(new JobSchedule(
+                jobType: typeof(TaskJobSynchronizedCoupon),
+                cronExpression: "0 0 0/1 1/1 * ? *")); // 0 0/3 * 1/1 * ? * 3 phút chạy 1 lần
+                                                       // 0 0 0/1 1/1 * ? * 1 tiếng chạy 1 lần
+
+            // Add our job coupon
+            services.AddSingleton<TaskJobUpdateStatusCoupon>();
+            services.AddSingleton(new JobSchedule(
+                jobType: typeof(TaskJobUpdateStatusCoupon),
+                cronExpression: "0 0 0/6 1/1 * ? *")); // 0 0/3 * 1/1 * ? * 3 phút chạy 1 lần
+                                                       // 0 0 0/1 1/1 * ? * 1 tiếng chạy 1 lần
 
             services.AddHostedService<QuartzHostedService>();
 

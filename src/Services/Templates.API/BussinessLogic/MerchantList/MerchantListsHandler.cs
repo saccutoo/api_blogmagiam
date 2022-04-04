@@ -43,18 +43,18 @@ namespace Templates.API.BussinessLogic
                 var url = Helpers.GetConfig("API_ACCESSTRADE:MERCHANT_LIST");
                 CallApi<MerchantListModel> callApi = new CallApi<MerchantListModel>();
                 var response = await callApi.GetApi(url);
-                if (response.Data.Count>0)
-                {
-                    var responseMerchantDB = await GetAllMerchantAsync();
-                    if (responseMerchantDB.Data!=null && responseMerchantDB.Data.Count>0 && response.Data.Count< responseMerchantDB.Data.Count)
-                    {
-                        await UpdateHideAllAsync();
-                        foreach (var item in response.Data)
-                        {
-                            ResponseObject<MerchantListModel> data = await UpdateAsync(item);
-                        }
-                    }
-                }
+                //if (response.Data.Count>0)
+                //{
+                //    var responseMerchantDB = await GetAllMerchantAsync();
+                //    if (responseMerchantDB.Data!=null && responseMerchantDB.Data.Count>0 && response.Data.Count< responseMerchantDB.Data.Count)
+                //    {
+                //        await UpdateHideAllAsync();
+                //        foreach (var item in response.Data)
+                //        {
+                //            ResponseObject<MerchantListModel> data = await UpdateAsync(item);
+                //        }
+                //    }
+                //}
                 return response;
             }
             catch (Exception ex)

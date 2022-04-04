@@ -14,6 +14,6 @@ namespace Templates.API
         }
 
         public Type JobType { get; }
-        public string CronExpression { get; } = "0/5 * * * * ?";
+        public string CronExpression { get; } 
     }
 }

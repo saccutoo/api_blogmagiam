@@ -82,5 +82,15 @@ namespace Utils
         public static string MONTH = "MONTH";
         public static string WEEK = "WEEK";
         public static string YEAR = "YEAR";
+
+        public static string ShopeeCode = "shopee";
+        public static string ShopeeKeyCode = "shoppe_keyword";
+        public static string ShopeeHasFilterByKey = "shopee_has_filter_by_key";
+
+        public static int Limit = 9999999;
+        public static string Coupon_AccessTrade = "COUPON_ACCESSTRADE";
+        public static string Coupon_BlogMaGiam = "COUPON_BLOGMAGIAM";
+
+        public static string Job = "JOB";
     }
 }

@@ -953,21 +953,21 @@ namespace Utils
                 UserName = string.Empty,
                 Language = string.Empty
             };
-            request.Headers.TryGetValue("X-UserId", out StringValues userId);
+            //request.Headers.TryGetValue("X-UserId", out StringValues userId);
             request.Headers.TryGetValue("X-UserName", out StringValues userName);
-            request.Headers.TryGetValue("X-Lang", out StringValues language);
-            if (!string.IsNullOrEmpty(userId) && Helpers.IsNumber(userId))
-            {
-                result.UserId = int.Parse(userId);
-            }
+            //request.Headers.TryGetValue("X-Lang", out StringValues language);
+            //if (!string.IsNullOrEmpty(userId) && Helpers.IsNumber(userId))
+            //{
+            //    result.UserId = int.Parse(userId);
+            //}
             if (!string.IsNullOrEmpty(userName))
             {
                 result.UserName = userName;
             }
-            if (!string.IsNullOrEmpty(language))
-            {
-                result.Language = language;
-            }
+            //if (!string.IsNullOrEmpty(language))
+            //{
+            //    result.Language = language;
+            //}
             return result;
         }
     }

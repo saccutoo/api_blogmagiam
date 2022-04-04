@@ -6,7 +6,10 @@ namespace Templates.API.BussinessLogic
 {
     public class CouponModel: BasicModel
     {
-
+        public string coupon_accesstrade_id
+        {
+            get; set;
+        }
         public string aff_link
         {
             get; set;
@@ -67,7 +70,7 @@ namespace Templates.API.BussinessLogic
             get; set;
         }
 
-        public string end_time
+        public DateTime end_time
         {
             get; set;
         }
@@ -115,7 +118,7 @@ namespace Templates.API.BussinessLogic
         {
             get; set;
         }
-        public long remain
+        public long? remain
         {
             get; set;
         }
@@ -135,12 +138,48 @@ namespace Templates.API.BussinessLogic
             get; set;
         }
 
+        public DateTime start_date
+        {
+            get; set;
+        }
+
+        public DateTime end_date
+        {
+            get; set;
+        }
+
         public long status
         {
             get; set;
         }
 
         public string time_left
+        {
+            get; set;
+        }
+        public string coupon_code
+        {
+            get; set;
+        }
+        public string type
+        {
+            get; set;
+        }
+        public decimal order
+        {
+            get; set;
+        }
+        public string status_name
+        {
+            get; set;
+        }
+
+        public string start_date_string
+        {
+            get; set;
+        }
+
+        public string end_date_string
         {
             get; set;
         }
@@ -297,6 +336,26 @@ namespace Templates.API.BussinessLogic
         public string time_left
         {
             get; set;
+        }
+    }
+
+    public class CouponQuery : BasicQueryModel
+    {
+        public string merchant
+        {
+            get;set;
+        }
+        public string type
+        {
+            get; set;
+        }
+    }
+
+    public class CouponDeleteModel : BasicModel
+    {
+        public string id
+        {
+            get;set;
         }
     }
 }

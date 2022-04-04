@@ -143,7 +143,7 @@ namespace Templates.API.BussinessLogic.Common
                         }
                     }
 
-                    await cmd.ExecuteNonQueryAsync();
+                    id=await cmd.ExecuteNonQueryAsync();
                     if (parameters != null && parameters.Count > 0)
                     {
                         foreach (var item in parameters)

@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 namespace Templates.API.BussinessLogic
 {
     public class BasicModel
+
     {
+        public int status
+        {
+            get; set;
+        }
         public DateTime? create_date
         {
             get;set;
@@ -20,10 +25,6 @@ namespace Templates.API.BussinessLogic
             get; set;
         }
         public string update_by
-        {
-            get; set;
-        }
-        public int status
         {
             get; set;
         }

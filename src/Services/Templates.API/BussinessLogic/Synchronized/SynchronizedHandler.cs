@@ -42,13 +42,6 @@ namespace Templates.API.BussinessLogic
             try
             {
                 ResponseObject<SynchronizedModel> response = new ResponseObject<SynchronizedModel>();
-                //CallDatabseMySql<SynchronizedModel> callDatabse = new CallDatabseMySql<SynchronizedModel>();
-                //List<MySqlParameter> parameters = new List<MySqlParameter>();
-                //MySqlParameter param = new MySqlParameter(); param.ParameterName = "LOGIN_NAME"; param.Value = loginName; param.DbType = DbType.String; param.Direction = ParameterDirection.Input; parameters.Add(param);
-                //response = await callDatabse.GetData("GET_MERCHANT_BY_LOGIN_NAME", parameters);
-                //return response;
-
-
                 ResponseAccessTrade<MerchantListModel> resAccesTrade = new ResponseAccessTrade<MerchantListModel>();
                 resAccesTrade = await _merchantListsInterfaceHandler.GetAllAsync();
                 if (resAccesTrade != null && resAccesTrade.Data!=null && resAccesTrade.Data.Count>0)

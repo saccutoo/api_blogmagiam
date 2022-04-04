@@ -28,6 +28,7 @@ namespace API.Extensions
             .AddSingleton<IDashboardsHandler, DashboardsHandler>()
             .AddSingleton<IMenusHandler, MenusHandler>()
             .AddSingleton<IUsersHandler, UsersHandler>()
+            .AddSingleton<IGlobalMastersHandler, GlobalMastersHandler>()
             .AddSingleton<IRedisService, RedisService>()            
             ;  
     }

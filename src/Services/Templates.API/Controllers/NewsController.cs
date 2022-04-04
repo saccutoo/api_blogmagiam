@@ -66,8 +66,8 @@ namespace Templates.API.Controllers
         [ProducesResponseType(typeof(ResponseObject<NewsModel>), StatusCodes.Status200OK)]
         public async Task<ResponseObject<NewsModel>> AddChangeAsync(NewsModel model)
         {
-            //var requestInfo = RequestHelpers.GetRequestInfo(Request);
-            //model.create_by = requestInfo.UserName;
+            var requestInfo = RequestHelpers.GetRequestInfo(Request);
+            model.create_by = requestInfo.UserName;
             var result = await _NewsInterfaceHandler.AddChangeAsync(model);
             return result;
         }
@@ -76,6 +76,8 @@ namespace Templates.API.Controllers
         [ProducesResponseType(typeof(ResponseObject<NewsModel>), StatusCodes.Status200OK)]
         public async Task<ResponseObject<NewsModel>> UpdateChangeAsync(NewsModel model)
         {
+            var requestInfo = RequestHelpers.GetRequestInfo(Request);
+            model.update_by = requestInfo.UserName;
             var result = await _NewsInterfaceHandler.UpdateChangeAsync(model);
             return result;
         }
@@ -94,6 +96,8 @@ namespace Templates.API.Controllers
         [ProducesResponseType(typeof(ResponseObject<NewsModel>), StatusCodes.Status200OK)]
         public async Task<ResponseObject<NewsModel>> UpdateStatusAsync(NewsModel model)
         {
+            var requestInfo = RequestHelpers.GetRequestInfo(Request);
+            model.update_by = requestInfo.UserName;
             var result = await _NewsInterfaceHandler.UpdateStatusAsync(model);
             return result;
         }

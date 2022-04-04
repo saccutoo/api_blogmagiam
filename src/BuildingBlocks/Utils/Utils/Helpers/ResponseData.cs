@@ -29,7 +29,7 @@ namespace Utils
         public decimal TotalPage { get; set; } = 0;
         public decimal TotalRecord { get; set; } = 0;
         public Dictionary<string, object> OutData { get; set; } = new Dictionary<string, object>();
-
+        public int Count { get; set; } = 0;
 
     }
 
@@ -53,6 +53,7 @@ namespace Utils
     /// <typeparam name="T"></typeparam>
     public class ResponseObject<T> : Response
     {
+         
         public ResponseObject()
         {
 
@@ -102,7 +103,9 @@ namespace Utils
             TotalCount = totalCount;
             TotalRecord = totalRecord;
         }
-        public T Data { get; set; }    }
+        public T Data { get; set; }
+
+    }
     #endregion
 
 

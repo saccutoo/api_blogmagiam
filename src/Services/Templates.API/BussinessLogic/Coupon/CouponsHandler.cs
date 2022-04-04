@@ -309,11 +309,47 @@ namespace Templates.API.BussinessLogic
                     {
                         int pageIndex = 1;
                         double totalPageNewToFixed = 0;
+
+                        //Lấy danh sách mã đang chạy
                         var responseCouponAccessTrade = await GetCouponFromAcessTradeByMerchantAsync(false, string.Empty, merchant.merchant_id, int.MaxValue, pageIndex, merchant.login_name);
                         if (responseCouponAccessTrade != null && responseCouponAccessTrade.Data != null && responseCouponAccessTrade.Data.Count > 0)
                         {
                             //totalPageNewToFixed = Math.Ceiling((double)responseCouponAccessTrade.Count / (double)responseCouponAccessTrade.Data.Count);
                             foreach (var item in responseCouponAccessTrade.Data.Where(s => s.shop_id == 0))
+                            {
+                                CouponModel model = item;
+                                model.order = Constants.Limit;
+                                model.start_date = model.start_time;
+                                model.end_date = model.end_time;
+                                model.type = Constants.Coupon_AccessTrade;
+                                model.coupon_code = model.coupons[0].coupon_code;
+                                model.create_by = Constants.Job;
+                                model.update_by = Constants.Job;
+                                List<MySqlParameter> parameters = new List<MySqlParameter>();
+                                MySqlParameter param = new MySqlParameter(); param.ParameterName = "p_coupon_accesstrade_id"; param.Value = model.id; param.DbType = DbType.String; param.Direction = ParameterDirection.Input; parameters.Add(param);
+                                param = new MySqlParameter(); param.ParameterName = "p_aff_link"; param.Value = model.aff_link; param.DbType = DbType.String; param.Direction = ParameterDirection.Input; parameters.Add(param);
+                                param = new MySqlParameter(); param.ParameterName = "p_image"; param.Value = model.image; param.DbType = DbType.String; param.Direction = ParameterDirection.Input; parameters.Add(param);
+                                param = new MySqlParameter(); param.ParameterName = "p_name"; param.Value = model.name; param.DbType = DbType.String; param.Direction = ParameterDirection.Input; parameters.Add(param);
+                                param = new MySqlParameter(); param.ParameterName = "p_merchant"; param.Value = model.merchant; param.DbType = DbType.String; param.Direction = ParameterDirection.Input; parameters.Add(param);
+                                param = new MySqlParameter(); param.ParameterName = "p_coupon_code"; param.Value = model.coupon_code; param.DbType = DbType.String; param.Direction = ParameterDirection.Input; parameters.Add(param);
+                                param = new MySqlParameter(); param.ParameterName = "p_content"; param.Value = model.content; param.DbType = DbType.String; param.Direction = ParameterDirection.Input; parameters.Add(param);
+                                param = new MySqlParameter(); param.ParameterName = "p_remain"; param.Value = model.remain; param.DbType = DbType.Int32; param.Direction = ParameterDirection.Input; parameters.Add(param);
+                                param = new MySqlParameter(); param.ParameterName = "p_start_date"; param.Value = model.start_date; param.DbType = DbType.DateTime; param.Direction = ParameterDirection.Input; parameters.Add(param);
+                                param = new MySqlParameter(); param.ParameterName = "p_end_date"; param.Value = model.end_date; param.DbType = DbType.DateTime; param.Direction = ParameterDirection.Input; parameters.Add(param);
+                                param = new MySqlParameter(); param.ParameterName = "p_order"; param.Value = model.order; param.DbType = DbType.Int32; param.Direction = ParameterDirection.Input; parameters.Add(param);
+                                param = new MySqlParameter(); param.ParameterName = "p_type"; param.Value = model.type; param.DbType = DbType.String; param.Direction = ParameterDirection.Input; parameters.Add(param);
+                                param = new MySqlParameter(); param.ParameterName = "p_create_by"; param.Value = model.create_by; param.DbType = DbType.String; param.Direction = ParameterDirection.Input; parameters.Add(param);
+                                param = new MySqlParameter(); param.ParameterName = "p_update_by"; param.Value = model.update_by; param.DbType = DbType.String; param.Direction = ParameterDirection.Input; parameters.Add(param);
+                                await callDatabse.Excute("SYNCHRONIZED_COUPON_DATA", parameters);
+                            }
+                        }
+
+                        //Lấy danh sách mã sắp mở
+                        var responseCouponAccessTradeNew = await GetCouponFromAcessTradeByMerchantAsync(true, string.Empty, merchant.merchant_id, int.MaxValue, pageIndex, merchant.login_name);
+                        if (responseCouponAccessTradeNew != null && responseCouponAccessTradeNew.Data != null && responseCouponAccessTradeNew.Data.Count > 0)
+                        {
+                            //totalPageNewToFixed = Math.Ceiling((double)responseCouponAccessTrade.Count / (double)responseCouponAccessTrade.Data.Count);
+                            foreach (var item in responseCouponAccessTradeNew.Data.Where(s => s.shop_id == 0))
                             {
                                 CouponModel model = item;
                                 model.order = Constants.Limit;
